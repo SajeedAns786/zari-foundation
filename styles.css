@@ -808,6 +808,169 @@ img {
     color: #dc3545;
 }
 
+/* Donation Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 62, 80, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    margin: 10% auto;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    animation: scaleIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.close-modal {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 2rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-modal:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modal-header h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.modal-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.qr-section {
+    text-align: center;
+    padding: 20px;
+    background: var(--bg-main);
+    border-radius: var(--radius-md);
+}
+
+.qr-code {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    background: white;
+    border-radius: var(--radius-sm);
+}
+
+.qr-hint {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.payment-method {
+    margin-bottom: 30px;
+}
+
+.payment-method h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--bg-dark);
+}
+
+.copy-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-main);
+    padding: 15px 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.copy-box button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.copy-box button:hover {
+    transform: scale(1.1);
+}
+
+.bank-details {
+    background: var(--bg-main);
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    line-height: 1.8;
+}
+
+.btn-copy-inline {
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .modal-body-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        padding: 30px 20px;
+    }
+}
+
 /* Footer Section */
 .footer {
     background-color: var(--bg-dark);

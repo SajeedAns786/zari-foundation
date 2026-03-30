@@ -38,7 +38,7 @@
                 <li><a href="#focus">Focus Areas</a></li>
                 <li><a href="#impact">Our Impact</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#donate" class="btn btn-outline">Donate</a></li>
+                <li><a href="javascript:void(0)" class="btn btn-outline donate-trigger">Donate</a></li>
             </ul>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <i class="fa-solid fa-bars"></i>
@@ -53,7 +53,7 @@
             <h1>Weaving strength into every women's journey</h1>
             <p>Supporting women, children, elderly and the animals through care, education, and opportunity.</p>
             <div class="hero-buttons">
-                <a href="#donate" class="btn btn-primary">Donate Now</a>
+                <a href="javascript:void(0)" class="btn btn-primary donate-trigger">Donate Now</a>
                 <a href="#volunteer" class="btn btn-secondary">Become a Volunteer</a>
             </div>
         </div>
@@ -259,7 +259,7 @@
                     <div class="card-content">
                         <h3>Donate</h3>
                         <p>Your financial contribution fuels our ongoing programs directly.</p>
-                        <a href="#contact" class="btn btn-primary">Donate <i class="fa-solid fa-heart"></i></a>
+                        <a href="javascript:void(0)" class="btn btn-primary donate-trigger">Donate <i class="fa-solid fa-heart"></i></a>
                     </div>
                 </div>
                 <div class="involved-card" data-aos="fade-up" data-aos-delay="400">
@@ -362,7 +362,7 @@
                 <ul>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="javascript:void(0)" class="donate-trigger">Donate</a></li>
                     <li><a href="#volunteer">Volunteer</a></li>
                 </ul>
             </div>
@@ -387,6 +387,44 @@
             </div>
         </div>
     </footer>
+
+    <!-- Donation Modal -->
+    <div id="donateModal" class="modal">
+        <div class="modal-content glassmorphism">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Support Zari Foundation</h2>
+                <p>Your contribution directly impacts lives.</p>
+            </div>
+            
+            <div class="modal-body-grid">
+                <div class="qr-section">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9172716786@ptyes&pn=Zari%20Foundation&cu=INR" alt="UPI QR Code" class="qr-code">
+                    <p class="qr-hint">Scan with GPay, PhonePe, Paytm</p>
+                </div>
+                
+                <div class="details-section">
+                    <div class="payment-method">
+                        <h3><i class="fa-solid fa-mobile-screen-button"></i> UPI Details</h3>
+                        <div class="copy-box">
+                            <span id="upiId">9172716786@ptyes</span>
+                            <button onclick="copyToClipboard('upiId')" title="Copy UPI ID"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <h3><i class="fa-solid fa-building-columns"></i> Bank Transfer</h3>
+                        <div class="bank-details">
+                            <p><strong>A/C:</strong> <span id="accNum">109001515913</span> <button onclick="copyToClipboard('accNum')" class="btn-copy-inline"><i class="fa-regular fa-copy"></i></button></p>
+                            <p><strong>IFSC:</strong> ICIC0000564</p>
+                            <p><strong>Name:</strong> Zari Foundation</p>
+                            <p><strong>Branch:</strong> ICICI Bank (Noida)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Toast Notification -->
     <div id="toastNotification" class="toast">

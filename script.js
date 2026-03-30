@@ -151,4 +151,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+
+    // 7. Donation Modal Logic
+    const donateModal = document.getElementById('donateModal');
+    const donateTriggers = document.querySelectorAll('.donate-trigger');
+    const closeModal = document.querySelector('.close-modal');
+
+    const openModal = () => {
+        if (donateModal) {
+            donateModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        }
+    };
+
+    const hideModal = () => {
+        if (donateModal) {
+            donateModal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scroll
+        }
+    };
+
+    donateTriggers.forEach(trigger => {
+        trigger.addEventListener('click', openModal);
+    });
+
+    if (closeModal) {
+        closeModal.addEventListener('click', hideModal);
+    }
+
+    // Close on outside click
+    window.addEventListener('click', (e) => {
+        if (e.target === donateModal) {
+            hideModal();
+        }
+    });
+
+    // 8. Copy to Clipboard Function
+    window.copyToClipboard = (elementId) => {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            // Show toast for feedback
+            if (typeof showToast === 'function') {
+                showToast('Copied to clipboard!', 'success');
+            }
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    };
 });
