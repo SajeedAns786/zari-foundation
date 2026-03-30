@@ -94,37 +94,48 @@ document.addEventListener('DOMContentLoaded', () => {
         counterObserver.observe(counter);
     });
 
-    // 6. Contact Form Submission handling (Mock)
+    // 6. Contact Form Submission handling (Google Sheets Integration)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             const btn = contactForm.querySelector('button[type="submit"]');
+            const formMessage = document.getElementById('formMessage');
             const originalText = btn.innerHTML;
             
-            // Simulate sending state
+            // Show sending state
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
             btn.disabled = true;
             
-            setTimeout(() => {
-                // Determine form success state
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
-                btn.classList.add('btn-success');
-                btn.style.backgroundColor = '#6B8E23'; // Green success color
-                btn.style.color = '#fff';
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Revert button after 3 seconds
-                setTimeout(() => {
+            // Hide previous messages
+            if (formMessage) {
+                formMessage.style.display = 'none';
+                formMessage.className = 'form-message';
+            }
+            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzbEFG-iizOg5tvh5iMTGfSgHZqNkPFP0el7m31Yji9Eg5CjpLbGW9acYQfHSlDHiH2/exec';
+            const formData = new FormData(contactForm);
+            
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    if (formMessage) {
+                        formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+                        formMessage.classList.add('success');
+                    }
+                    contactForm.reset();
                     btn.innerHTML = originalText;
                     btn.disabled = false;
-                    btn.style.backgroundColor = '';
-                    btn.style.color = '';
-                }, 3000);
-            }, 1500);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    if (formMessage) {
+                        formMessage.textContent = 'Oops! Something went wrong. Please try again later.';
+                        formMessage.classList.add('error');
+                    }
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
         });
     }
 });

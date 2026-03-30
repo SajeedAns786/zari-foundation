@@ -192,6 +192,18 @@ img {
 .logo {
     display: flex;
     align-items: center;
+    gap: 15px;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--bg-dark);
+}
+
+.footer-logo-text {
+    color: var(--bg-light);
 }
 
 .logo-img {
@@ -752,6 +764,29 @@ img {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.form-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    display: none;
+    font-weight: 500;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
 }
 
 /* Footer Section */
