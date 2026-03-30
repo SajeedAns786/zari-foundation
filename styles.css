@@ -318,7 +318,11 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.mission-vision-container {
+    margin-top: 60px;
 }
 
 .about-image {
@@ -330,7 +334,6 @@ img {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     object-fit: cover;
-    height: 500px;
     width: 100%;
 }
 
@@ -376,8 +379,8 @@ img {
 
 .mission-vision {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
 .mv-card {
@@ -1113,6 +1116,10 @@ img {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+    }
+
+    .mission-vision {
+        grid-template-columns: 1fr;
     }
 }
 
