@@ -343,7 +343,6 @@
                         <textarea id="message" name="message" rows="4" placeholder="How can we help you?" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary w-100" id="submitBtn">Send Message</button>
-                    <div id="formMessage" class="form-message"></div>
                 </form>
             </div>
         </div>
@@ -391,6 +390,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="toast">
+        <i class="fa-solid fa-circle-check toast-icon" id="toastIcon"></i>
+        <span class="toast-message" id="toastMsg">Response is saved in Google Sheet.</span>
+    </div>
 
     <!-- Scripts -->
     <!-- AOS Animate Script -->

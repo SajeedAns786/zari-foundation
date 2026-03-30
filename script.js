@@ -100,43 +100,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Contact Form Submission handling (Google Sheets Integration)
     const contactForm = document.getElementById('contactForm');
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMsg');
+    const toastIcon = document.getElementById('toastIcon');
+
+    function showToast(message, type) {
+        if (!toast) return;
+        
+        toastMsg.textContent = message;
+        toast.className = 'toast show ' + type;
+        
+        if (type === 'success') {
+            toastIcon.className = 'fa-solid fa-circle-check toast-icon';
+        } else {
+            toastIcon.className = 'fa-solid fa-circle-xmark toast-icon';
+        }
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 5000);
+    }
+
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             const btn = contactForm.querySelector('button[type="submit"]');
-            const formMessage = document.getElementById('formMessage');
             const originalText = btn.innerHTML;
             
             // Show sending state
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
             btn.disabled = true;
             
-            // Hide previous messages
-            if (formMessage) {
-                formMessage.style.display = 'none';
-                formMessage.className = 'form-message';
-            }
-            
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzbEFG-iizOg5tvh5iMTGfSgHZqNkPFP0el7m31Yji9Eg5CjpLbGW9acYQfHSlDHiH2/exec';
             const formData = new FormData(contactForm);
             
             fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
-                    if (formMessage) {
-                        formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-                        formMessage.classList.add('success');
-                    }
+                    showToast('Response is saved in Google Sheet.', 'success');
                     contactForm.reset();
                     btn.innerHTML = originalText;
                     btn.disabled = false;
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
-                    if (formMessage) {
-                        formMessage.textContent = 'Oops! Something went wrong. Please try again later.';
-                        formMessage.classList.add('error');
-                    }
+                    showToast('Oops! Something went wrong. Please try again.', 'error');
                     btn.innerHTML = originalText;
                     btn.disabled = false;
                 });
