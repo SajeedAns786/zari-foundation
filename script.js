@@ -64,18 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
+                let currentCount = 0;
                 const updateCount = () => {
                     const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
+                    const suffix = counter.getAttribute('data-suffix') || '';
                     
-                    // Increment step
-                    const inc = target / speed;
+                    // Calculate increment so all counters finish at about the same time
+                    const inc = Math.max(target / speed, 0.1); 
 
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
+                    if (currentCount < target) {
+                        currentCount += inc;
+                        // Avoid overshooting during animation
+                        if (currentCount > target) currentCount = target;
+                        counter.innerText = Math.ceil(currentCount);
                         setTimeout(updateCount, 10);
                     } else {
-                        counter.innerText = target + (target > 1000 ? '+' : '');
+                        counter.innerText = target + suffix;
                     }
                 };
                 
